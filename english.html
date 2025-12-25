@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS 8.0 Strategy - Finland & Vibery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Gradient Text */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #6366f1, #a855f7, #ec4899);
+        }
+
+        .tech-card:hover {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+        
+        .sales-card:hover {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            border-color: rgba(16, 185, 129, 0.6);
+        }
+
+        /* Vision Cards */
+        .vision-card {
+            transition: all 0.5s ease;
+            background-size: cover;
+            background-position: center;
+        }
+        .vision-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        
+        /* IELTS Paper Texture */
+        .ielts-paper {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #1e293b;
+        }
+
+        /* Copy Button Animation */
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 selection:bg-indigo-500/30">
+
+    <!-- HERO SECTION -->
+    <header class="relative overflow-hidden pt-20 pb-12 px-4 text-center">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-indigo-600/20 blur-[100px] rounded-full -z-10"></div>
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-700 bg-slate-900/50 text-xs font-mono text-slate-400 mb-6">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            MISSION: FINLAND MASTERS & VIBERY STUDIO
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6">
+            The <span class="text-gradient">AI Salesman</span><br>Strategy
+        </h1>
+        
+        <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            Stop learning English in a vacuum. <br>
+            Use English as a weapon to absorb <span class="text-cyan-400 font-bold">Deep Tech</span> and build <span class="text-emerald-400 font-bold">Vibery Product Studio</span>.
+        </p>
+    </header>
+
+    <!-- VISION BOARD SECTION (NEW) -->
+    <section class="max-w-6xl mx-auto px-4 py-8 mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Card 1: Finland -->
+            <div class="vision-card h-64 rounded-2xl relative overflow-hidden group border border-slate-700" 
+                 style="background-image: url('https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=2070&auto=format&fit=crop');">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <div class="flex items-center gap-2 text-cyan-400 font-bold text-sm mb-1">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i> DESTINATION
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">Finland</h3>
+                    <p class="text-slate-300 text-sm">Masters in AI. Northern Lights.</p>
+                </div>
+            </div>
+
+            <!-- Card 2: The Ticket (IELTS Cert) -->
+            <div class="vision-card h-64 rounded-2xl relative overflow-hidden group border border-slate-700 ielts-paper flex flex-col justify-between p-6">
+                <div class="flex justify-between items-start border-b-2 border-slate-300 pb-2">
+                    <div>
+                        <div class="text-[10px] uppercase font-bold text-slate-500 tracking-widest">Test Report Form</div>
+                        <div class="font-black text-xl text-slate-800">IELTS <span class="text-indigo-600">ACADEMIC</span></div>
+                    </div>
+                    <div class="w-10 h-10 rounded-full border-2 border-slate-300 flex items-center justify-center">
+                        <i data-lucide="award" class="w-5 h-5 text-indigo-600"></i>
+                    </div>
+                </div>
+                
+                <div class="space-y-2 my-2">
+                    <div class="flex justify-between text-sm">
+                        <span class="font-bold text-slate-600">Listening:</span>
+                        <span class="font-mono font-bold text-slate-900">9.0</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="font-bold text-slate-600">Reading:</span>
+                        <span class="font-mono font-bold text-slate-900">9.0</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="font-bold text-slate-600">Writing:</span>
+                        <span class="font-mono font-bold text-slate-900">7.5</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="font-bold text-slate-600">Speaking:</span>
+                        <span class="font-mono font-bold text-slate-900">7.5</span>
+                    </div>
+                </div>
+
+                <div class="mt-auto pt-3 border-t-2 border-slate-300 flex justify-between items-end">
+                    <div>
+                        <div class="text-[9px] uppercase font-bold text-slate-500">Overall Band Score</div>
+                        <div class="text-4xl font-black text-indigo-600">8.0</div>
+                    </div>
+                    <div class="text-[9px] font-mono text-slate-400">CEFR Level C1/C2</div>
+                </div>
+                
+                <!-- Stamp Overlay -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-4 border-red-500/20 rounded-full flex items-center justify-center -rotate-12 pointer-events-none">
+                    <span class="text-red-500/20 font-black text-2xl uppercase">Verified</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Vibery -->
+            <div class="vision-card h-64 rounded-2xl relative overflow-hidden group border border-slate-700"
+                 style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop');">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm mb-1">
+                        <i data-lucide="briefcase" class="w-4 h-4"></i> THE EMPIRE
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">Vibery Product Studio</h3>
+                    <p class="text-slate-300 text-sm">AI-Driven Sales Solutions.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY SECTION -->
+    <section class="max-w-6xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Core Philosophy: "Triple Dipping"</h2>
+            <p class="text-slate-400">One shot, three kills. Integrate your career goals into your study routine.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Pillar 1 -->
+            <div class="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-8 bg-cyan-500/10 blur-2xl rounded-full"></div>
+                <div class="w-12 h-12 bg-cyan-900/30 rounded-lg flex items-center justify-center text-cyan-400 mb-6">
+                    <i data-lucide="cpu" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-cyan-100">AI Tech (IQ)</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    Devour Arxiv papers and Deep Tech lectures. This fuels your <strong class="text-white">Academic Reading & Listening</strong> for the Masters degree.
+                </p>
+                <div class="text-xs font-mono text-cyan-600 bg-cyan-950/30 px-2 py-1 inline-block rounded">Karpathy • Arxiv • Docs</div>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-8 bg-emerald-500/10 blur-2xl rounded-full"></div>
+                <div class="w-12 h-12 bg-emerald-900/30 rounded-lg flex items-center justify-center text-emerald-400 mb-6">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-emerald-100">Vibery Sales (EQ)</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    Master behavioral psychology and persuasion. Essential for building <strong class="text-white">Vibery Product Studio</strong> and Speaking Part 3.
+                </p>
+                <div class="text-xs font-mono text-emerald-600 bg-emerald-950/30 px-2 py-1 inline-block rounded">Psychology • Pitching • Negotiation</div>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-8 bg-indigo-500/10 blur-2xl rounded-full"></div>
+                <div class="w-12 h-12 bg-indigo-900/30 rounded-lg flex items-center justify-center text-indigo-400 mb-6">
+                    <i data-lucide="globe" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-indigo-100">English 8.0</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    The inevitable byproduct of high-level input. The ticket to Finland.
+                </p>
+                <div class="text-xs font-mono text-indigo-500 bg-indigo-950/30 px-2 py-1 inline-block rounded">IELTS Band 8.0 Goal</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCHEDULE SECTION -->
+    <section class="bg-slate-900 py-16 border-y border-slate-800">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">The Alternating Protocol</h2>
+                <p class="text-slate-400">Oscillate between Logic and Emotion to keep your brain firing on all cylinders.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- TECH DAY -->
+                <div class="tech-card border border-slate-700 bg-slate-950/50 p-6 rounded-xl transition-all duration-300">
+                    <div class="flex items-center justify-between mb-6 border-b border-slate-800 pb-4">
+                        <h3 class="text-xl font-bold text-cyan-400 flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-5 h-5"></i> Even Days (Tech/Finland)
+                        </h3>
+                        <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 px-2 py-1 rounded">HARDCORE LOGIC</span>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3">
+                            <div class="mt-1"><i data-lucide="book-open" class="w-4 h-4 text-cyan-500"></i></div>
+                            <div>
+                                <div class="font-bold text-sm text-slate-200">Reading: AI Papers (Arxiv)</div>
+                                <div class="text-xs text-slate-500">Mental translation of complex syntax.</div>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <div class="mt-1"><i data-lucide="headphones" class="w-4 h-4 text-cyan-500"></i></div>
+                            <div>
+                                <div class="font-bold text-sm text-slate-200">Listening: Tech Lectures</div>
+                                <div class="text-xs text-slate-500">Karpathy/Lex Fridman. Academic note-taking.</div>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <div class="mt-1"><i data-lucide="mic" class="w-4 h-4 text-cyan-500"></i></div>
+                            <div>
+                                <div class="font-bold text-sm text-slate-200">Speaking: The Tech Interview</div>
+                                <div class="text-xs text-slate-500">Answer abstract questions on the Future of AI.</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- SALES DAY -->
+                <div class="sales-card border border-slate-700 bg-slate-950/50 p-6 rounded-xl transition-all duration-300">
+                    <div class="flex items-center justify-between mb-6 border-b border-slate-800 pb-4">
+                        <h3 class="text-xl font-bold text-emerald-400 flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-5 h-5"></i> Odd Days (Vibery Sales)
+                        </h3>
+                        <span class="text-xs font-mono bg-emerald-900/20 text-emerald-300 px-2 py-1 rounded">EMOTIONAL INTEL</span>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3">
+                            <div class="mt-1"><i data-lucide="book-open" class="w-4 h-4 text-emerald-500"></i></div>
+                            <div>
+                                <div class="font-bold text-sm text-slate-200">Reading: Psychology Books</div>
+                                <div class="text-xs text-slate-500">Thinking Fast & Slow. Behavioral vocab.</div>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <div class="mt-1"><i data-lucide="headphones" class="w-4 h-4 text-emerald-500"></i></div>
+                            <div>
+                                <div class="font-bold text-sm text-slate-200">Listening: The Pitch</div>
+                                <div class="text-xs text-slate-500">Shadowing Steve Jobs/Obama. Master intonation.</div>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <div class="mt-1"><i data-lucide="mic" class="w-4 h-4 text-emerald-500"></i></div>
+                            <div>
+                                <div class="font-bold text-sm text-slate-200">Speaking: Feynman Pitch</div>
+                                <div class="text-xs text-slate-500">Explain Tech to a non-tech CEO.</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROMPTS SECTION (NEW) -->
+    <section class="max-w-6xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">System Prompts Repository</h2>
+            <p class="text-slate-400">Copy and paste these commands to initialize your AI training partners.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            <!-- Prompt 1: The Feynman Salesman -->
+            <div class="bg-slate-800/40 rounded-xl border border-slate-700 overflow-hidden">
+                <div class="bg-slate-900/50 px-4 py-3 border-b border-slate-700 flex justify-between items-center">
+                    <div class="flex items-center gap-2 text-indigo-400 font-bold text-sm">
+                        <i data-lucide="users" class="w-4 h-4"></i> The Feynman Salesman
+                    </div>
+                    <button onclick="copyToClipboard('prompt-1')" class="copy-btn text-xs bg-indigo-600 hover:bg-indigo-500 text-white px-2 py-1 rounded flex items-center gap-1">
+                        <i data-lucide="copy" class="w-3 h-3"></i> Copy
+                    </button>
+                </div>
+                <div class="p-4 bg-slate-900 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto whitespace-pre-wrap" id="prompt-1">You are a skeptical CEO of a non-tech company looking to buy AI solutions. You have zero technical background and hate jargon.
+Your Task:
+1. Ask me to explain a specific AI concept (e.g., 'Transformer', 'RAG', 'Gradient Descent') or how your product helps me.
+2. If I use technical terms (like 'weights', 'neurons', 'backprop') without a simple analogy, INTERRUPT me immediately and say: 'Speak English, please! What does that mean for my business?'
+3. After my explanation, rate my 'Analogy Score' (1-10) and suggest a better, simpler metaphor.</div>
+            </div>
+
+            <!-- Prompt 2: Arxiv Deconstructor -->
+            <div class="bg-slate-800/40 rounded-xl border border-slate-700 overflow-hidden">
+                <div class="bg-slate-900/50 px-4 py-3 border-b border-slate-700 flex justify-between items-center">
+                    <div class="flex items-center gap-2 text-cyan-400 font-bold text-sm">
+                        <i data-lucide="cpu" class="w-4 h-4"></i> Arxiv Deconstructor
+                    </div>
+                    <button onclick="copyToClipboard('prompt-2')" class="copy-btn text-xs bg-cyan-600 hover:bg-cyan-500 text-white px-2 py-1 rounded flex items-center gap-1">
+                        <i data-lucide="copy" class="w-3 h-3"></i> Copy
+                    </button>
+                </div>
+                <div class="p-4 bg-slate-900 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto whitespace-pre-wrap" id="prompt-2">Act as an IELTS Band 9.0 Linguistic Expert. I will paste a paragraph from an AI Research Paper.
+Output Format (Markdown):
+1. **Core Meaning:** Summarize the paragraph in 1 simple sentence (Sales language).
+2. **Academic Collocations:** List 3-5 key phrases (e.g., 'empirical evidence', 'state-of-the-art').
+3. **Grammar Breakdown:** Identify one complex sentence structure used and explain why it makes the writing cohesive.
+4. **Rewrite:** Rewrite the paragraph to make it slightly more persuasive/opinionated (Task 2 style) rather than purely descriptive.</div>
+            </div>
+
+            <!-- Prompt 3: The Tech Interviewer -->
+            <div class="bg-slate-800/40 rounded-xl border border-slate-700 overflow-hidden">
+                <div class="bg-slate-900/50 px-4 py-3 border-b border-slate-700 flex justify-between items-center">
+                    <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+                        <i data-lucide="mic" class="w-4 h-4"></i> The Tech Interviewer
+                    </div>
+                    <button onclick="copyToClipboard('prompt-3')" class="copy-btn text-xs bg-emerald-600 hover:bg-emerald-500 text-white px-2 py-1 rounded flex items-center gap-1">
+                        <i data-lucide="copy" class="w-3 h-3"></i> Copy
+                    </button>
+                </div>
+                <div class="p-4 bg-slate-900 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto whitespace-pre-wrap" id="prompt-3">You are a Senior Tech Journalist (like Lex Fridman) conducting an interview.
+Topic: The Future of AI & Software Engineering.
+Rules:
+1. Ask me one deep, abstract question suitable for IELTS Speaking Part 3 (e.g., 'To what extent will AI replace human creativity?').
+2. Wait for my answer.
+3. Critique my answer on 3 criteria:
+    - **Lexical Resource:** Did I use precise tech collocations?
+    - **Structure:** Did I use P.E.E (Point-Explain-Example)?
+    - **Delivery:** Was the tone confident?
+4. Refine: Rewrite my answer to be a perfect Band 9.0 response.</div>
+            </div>
+
+            <!-- Prompt 4: Obsidian Formatter -->
+            <div class="bg-slate-800/40 rounded-xl border border-slate-700 overflow-hidden">
+                <div class="bg-slate-900/50 px-4 py-3 border-b border-slate-700 flex justify-between items-center">
+                    <div class="flex items-center gap-2 text-purple-400 font-bold text-sm">
+                        <i data-lucide="database" class="w-4 h-4"></i> Obsidian Formatter
+                    </div>
+                    <button onclick="copyToClipboard('prompt-4')" class="copy-btn text-xs bg-purple-600 hover:bg-purple-500 text-white px-2 py-1 rounded flex items-center gap-1">
+                        <i data-lucide="copy" class="w-3 h-3"></i> Copy
+                    </button>
+                </div>
+                <div class="p-4 bg-slate-900 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto whitespace-pre-wrap" id="prompt-4">Format the provided text/analysis as an Obsidian Note with frontmatter.
+Format:
+---
+tags: #ielts/vocab #tech/ai #sales/persuasion
+source: [Source Name]
+date: [Today]
+---
+# Word/Concept: [Name]
+**Definition:** [Academic Definition]
+**Sales Context:** [How to use in sales?]
+**Tech Context:** [How used in paper?]
+**Example:** [Original Sentence]</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WORKFLOW SECTION -->
+    <section class="bg-slate-900 py-16 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Daily Workflow</h2>
+                <p class="text-slate-400">The pipeline to convert raw Input into Long-term Assets.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Line -->
+                <div class="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-700 -ml-px"></div>
+
+                <!-- Step 1 -->
+                <div class="relative flex items-center gap-8 mb-12">
+                    <div class="w-10 h-10 rounded-full bg-slate-800 border-4 border-slate-900 shadow-xl flex items-center justify-center text-slate-300 font-bold z-10 shrink-0">1</div>
+                    <div class="bg-slate-800 p-4 rounded-lg border border-slate-700 flex-1">
+                        <div class="font-bold text-white mb-1">Input & Capture (09:15)</div>
+                        <p class="text-sm text-slate-400">Read books/papers. Highlight insights. Feed into Gem.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative flex items-center gap-8 mb-12 md:flex-row-reverse text-left md:text-right">
+                    <div class="w-10 h-10 rounded-full bg-indigo-600 border-4 border-slate-900 shadow-xl flex items-center justify-center text-white font-bold z-10 shrink-0">2</div>
+                    <div class="bg-slate-800 p-4 rounded-lg border border-indigo-500/30 flex-1">
+                        <div class="font-bold text-indigo-300 mb-1">AI Processing (09:45)</div>
+                        <p class="text-sm text-slate-400">Gem analyzes syntax, extracts vocab, and converts to Markdown.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative flex items-center gap-8 mb-12">
+                    <div class="w-10 h-10 rounded-full bg-purple-600 border-4 border-slate-900 shadow-xl flex items-center justify-center text-white font-bold z-10 shrink-0">3</div>
+                    <div class="bg-slate-800 p-4 rounded-lg border border-purple-500/30 flex-1">
+                        <div class="font-bold text-purple-300 mb-1">Obsidian Storage (10:00)</div>
+                        <p class="text-sm text-slate-400">Store in Second Brain. Link concepts (Sales <-> Tech).</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative flex items-center gap-8 md:flex-row-reverse text-left md:text-right">
+                    <div class="w-10 h-10 rounded-full bg-green-600 border-4 border-slate-900 shadow-xl flex items-center justify-center text-white font-bold z-10 shrink-0">4</div>
+                    <div class="bg-slate-800 p-4 rounded-lg border border-green-500/30 flex-1">
+                        <div class="font-bold text-green-300 mb-1">Active Output (10:30)</div>
+                        <p class="text-sm text-slate-400">Execute AI-generated quizzes or practice live Speaking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 text-center text-slate-500 text-sm">
+        <p class="mb-2">"Don't just learn English. Learn to sell the future to the world."</p>
+        <div class="font-mono text-xs opacity-50">AI MASTER HQ - 2024</div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Prompt Copied! Paste it into Gemini.");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
