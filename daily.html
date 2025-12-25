@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Command Center</title>
+    <title>AI Command Center - Master 8.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -13,52 +13,47 @@
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         
         /* Custom Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        .animate-float { animation: float 3s ease-in-out infinite; }
-        
         @keyframes pulse-glow {
             0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
             70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
         }
         .animate-pulse-glow { animation: pulse-glow 2s infinite; }
-
-        /* Glassmorphism Utilities */
-        .glass-day {
-            background: rgba(255, 255, 255, 0.7);
+        
+        /* Glassmorphism */
+        .glass {
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        .glass-night {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* Smooth transitions for theme switching */
-        .theme-transition { transition: all 1s ease-in-out; }
+        .tech-mode-bg { background: rgba(15, 23, 42, 0.85); }
+        .sales-mode-bg { background: rgba(6, 78, 59, 0.85); }
+
+        .theme-transition { transition: all 0.8s ease-in-out; }
+        
+        /* Obsidian Button Hover */
+        .obsidian-btn:hover {
+            box-shadow: 0 0 15px #a855f7;
+            transform: translateY(-1px);
+        }
     </style>
 </head>
-<body class="overflow-x-hidden theme-transition bg-slate-50 min-h-screen">
+<body class="overflow-x-hidden theme-transition min-h-screen text-slate-100 bg-slate-900">
 
     <!-- Background Layer -->
     <div id="bg-container" class="fixed inset-0 z-0 theme-transition transform scale-105">
-        <div id="bg-image" class="absolute inset-0 bg-cover bg-center theme-transition duration-1000"></div>
-        <div id="bg-overlay" class="absolute inset-0 theme-transition duration-1000"></div>
-        <div id="bg-gradient" class="absolute inset-0 bg-gradient-to-b theme-transition duration-1000"></div>
+        <div id="bg-image" class="absolute inset-0 bg-cover bg-center theme-transition duration-1000 opacity-60"></div>
+        <div id="bg-overlay" class="absolute inset-0 theme-transition duration-1000 bg-slate-900/80"></div>
     </div>
 
     <!-- Canvas Layers -->
-    <canvas id="star-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-80"></canvas>
+    <canvas id="star-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-50"></canvas>
     <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
 
     <!-- Main Content -->
     <div class="relative z-10 max-w-4xl mx-auto p-4 md:p-8 min-h-screen flex flex-col">
         
         <!-- Header -->
-        <header class="flex flex-col md:flex-row justify-between items-center mb-6 gap-6 theme-text">
+        <header class="flex flex-col md:flex-row justify-between items-center mb-6 gap-6">
             
             <!-- Identity -->
             <div class="flex items-center gap-4 w-full md:w-auto">
@@ -66,69 +61,70 @@
                     <div id="avatar-glow" class="absolute inset-0 rounded-full blur-md opacity-50 bg-indigo-500 animate-pulse"></div>
                     <img src="https://uploads.aigency.asia/ab6b3ca8-5607-432b-8d33-a96775eac710.jpeg" 
                          alt="User Avatar" 
-                         class="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-white/20 relative z-10 object-cover shadow-xl transition-transform transform group-hover:scale-105">
-                    <div class="absolute bottom-1 right-1 z-20 w-5 h-5 bg-green-500 border-2 border-white rounded-full animate-pulse"></div>
+                         class="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-white/20 relative z-10 object-cover shadow-xl transition-transform transform group-hover:scale-105">
                 </div>
                 <div>
                     <h1 class="text-2xl md:text-3xl font-black tracking-tight drop-shadow-sm flex items-center gap-2">
-                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500">
-                            AI COMMAND
+                        <span id="header-title" class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
+                            AI MASTER
                         </span>
-                        <span id="header-suffix">CENTER</span>
+                        <span class="text-white">HQ</span>
                     </h1>
-                    <p id="header-subtitle" class="text-xs md:text-sm font-medium opacity-80">
-                        Pilot & Co-pilot: Ready for duty
+                    <p class="text-xs md:text-sm font-medium text-slate-400 font-mono">
+                        Target: IELTS 8.0 & Tech Sales Mastery
                     </p>
                 </div>
             </div>
 
             <!-- Big Clock -->
             <div class="text-center md:text-right">
-                <div id="clock-time" class="text-4xl md:text-6xl font-black tracking-tighter tabular-nums leading-none">00:00</div>
-                <div id="clock-date" class="text-xs md:text-sm font-medium uppercase tracking-widest mt-1 opacity-60 text-indigo-500">Monday, Jan 1</div>
+                <div id="clock-time" class="text-4xl md:text-6xl font-black tracking-tighter tabular-nums leading-none text-white drop-shadow-lg">00:00</div>
+                <div id="clock-date" class="text-xs md:text-sm font-medium uppercase tracking-widest mt-1 opacity-80 text-indigo-400">Monday, Jan 1</div>
             </div>
         </header>
 
-        <!-- Stats Panel (Moved to dedicated row above progress bar) -->
-        <div class="flex justify-end mb-2">
-            <div id="stats-panel" class="flex items-center gap-2 p-1.5 rounded-lg border shadow-sm backdrop-blur-md transition-colors duration-500 bg-white/20 border-white/30 hover:bg-white/30">
-                <div class="px-3 border-r border-gray-400/30 text-center">
-                   <div class="text-[9px] uppercase font-bold opacity-70">Level</div>
-                   <div id="level-display" class="font-bold text-indigo-500 text-lg leading-none">1</div>
+        <!-- Stats & Mode Panel -->
+        <div class="flex justify-between items-end mb-4">
+            <!-- Mode Indicator -->
+            <div id="mode-badge" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider backdrop-blur-md border shadow-lg flex items-center gap-2 transition-all duration-500">
+                <i data-lucide="loader" class="animate-spin w-3 h-3"></i> Detecting Protocol...
+            </div>
+
+            <div id="stats-panel" class="flex items-center gap-2 p-1.5 rounded-lg border border-white/10 shadow-sm backdrop-blur-md bg-white/5">
+                <div class="px-3 border-r border-white/10 text-center">
+                   <div class="text-[9px] uppercase font-bold opacity-60 text-slate-300">Level</div>
+                   <div id="level-display" class="font-bold text-indigo-400 text-lg leading-none">1</div>
                 </div>
                 <div class="px-3 text-center">
-                   <div class="text-[9px] uppercase font-bold opacity-70">XP</div>
-                   <div id="xp-display" class="font-bold text-green-500 text-lg leading-none">0</div>
+                   <div class="text-[9px] uppercase font-bold opacity-60 text-slate-300">XP</div>
+                   <div id="xp-display" class="font-bold text-green-400 text-lg leading-none">0</div>
                 </div>
                 <button onclick="resetDay()" class="p-1.5 hover:bg-white/10 rounded-md transition-colors ml-1" title="Reset Day">
-                   <i data-lucide="target" class="w-4 h-4 opacity-50"></i>
+                   <i data-lucide="refresh-cw" class="w-4 h-4 text-slate-400"></i>
                 </button>
            </div>
         </div>
 
         <!-- Progress Bar -->
-        <div class="w-full h-4 bg-slate-200/30 backdrop-blur-sm rounded-full overflow-hidden mb-8 relative border border-white/20 shadow-inner">
-            <div id="progress-fill" class="h-full transition-all duration-700 ease-out flex items-center justify-end pr-2 w-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-                <span id="progress-text" class="text-[10px] font-bold text-white leading-none hidden">0%</span>
-            </div>
+        <div class="w-full h-2 bg-slate-700/50 rounded-full overflow-hidden mb-8 relative">
+            <div id="progress-fill" class="h-full transition-all duration-700 ease-out bg-gradient-to-r from-indigo-500 to-purple-500 w-0"></div>
         </div>
 
         <!-- Day Timeline Ruler -->
-        <div id="timeline-container" class="w-full mb-8 p-4 rounded-xl backdrop-blur-md border shadow-sm transition-colors duration-500">
+        <div id="timeline-container" class="w-full mb-8 p-4 rounded-xl backdrop-blur-md border border-white/10 shadow-sm transition-colors duration-500 bg-slate-800/40">
             <div class="flex justify-between items-center mb-2">
-                <span class="text-[10px] uppercase font-bold tracking-wider flex items-center gap-1 text-indigo-500">
-                   <i data-lucide="map-pin" class="w-3 h-3"></i> Day Progress
+                <span class="text-[10px] uppercase font-bold tracking-wider flex items-center gap-1 text-indigo-400">
+                   <i data-lucide="activity" class="w-3 h-3"></i> Timeline
                 </span>
-                <span id="timeline-pct" class="font-mono text-xs font-bold opacity-80">0% Passed</span>
+                <span id="timeline-pct" class="font-mono text-xs font-bold text-slate-400">0%</span>
             </div>
-            <div class="relative h-8 w-full select-none" id="timeline-track-container">
+            <div class="relative h-6 w-full select-none" id="timeline-track-container">
                 <!-- Track -->
-                <div class="absolute top-3 left-0 right-0 h-2 rounded-full bg-slate-400/20"></div>
+                <div class="absolute top-3 left-0 right-0 h-1 rounded-full bg-slate-600/30"></div>
                 <!-- Needle -->
-                <div id="timeline-needle" class="absolute top-0 bottom-0 w-1 bg-red-500 z-20 shadow-[0_0_10px_rgba(239,68,68,0.8)] rounded-full transition-all duration-1000 left-0">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-sm whitespace-nowrap shadow-sm">NOW</div>
+                <div id="timeline-needle" class="absolute top-0 bottom-0 w-0.5 bg-red-500 z-20 shadow-[0_0_10px_rgba(239,68,68,0.8)] transition-all duration-1000 left-0">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[8px] font-bold px-1 rounded-sm whitespace-nowrap">NOW</div>
                 </div>
-                <!-- Markers & Blocks injected by JS -->
             </div>
         </div>
 
@@ -136,15 +132,8 @@
         <div id="focus-container"></div>
 
         <!-- Task List -->
-        <div id="task-list" class="space-y-2 pl-2 transition-opacity duration-500">
+        <div id="task-list" class="space-y-4 pl-2 transition-opacity duration-500">
             <!-- Tasks injected by JS -->
-        </div>
-
-        <!-- Victory Message -->
-        <div id="victory-message" class="hidden mt-12 p-8 bg-gradient-to-br from-yellow-500/20 to-amber-500/20 border-2 border-yellow-400 rounded-2xl text-center animate-bounce backdrop-blur-md">
-            <i data-lucide="trophy" class="w-12 h-12 mx-auto text-yellow-500 mb-4"></i>
-            <h3 class="text-xl font-bold mb-2 text-yellow-600 dark:text-yellow-300">All Systems Operational!</h3>
-            <p class="text-yellow-700 dark:text-yellow-200">Excellent work pilot. Time for AI to recharge.</p>
         </div>
 
     </div>
@@ -153,122 +142,124 @@
     <script>
         // --- CONFIG & DATA ---
         const BG_IMAGES = {
-            day: [
-                "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=2070&auto=format&fit=crop", 
-                "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1948&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1501854140884-074cf2b2c7c8?q=80&w=2070&auto=format&fit=crop"
-            ],
-            night: [
-                "https://images.unsplash.com/photo-1532978379173-523e16f371f2?q=80&w=2070&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?q=80&w=2072&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=2013&auto=format&fit=crop"
-            ]
+            tech: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop", // Tech/Chip
+            sales: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop" // Business/People
         };
 
+        // Determine Mode: Even Day = Tech (AI Research), Odd Day = Sales
+        const today = new Date().getDate();
+        const isTechDay = today % 2 === 0;
+        
+        const MODE_CONFIG = isTechDay 
+            ? { 
+                name: "HARDCORE TECH DAY", 
+                sub: "AI Research & Deep Tech",
+                color: "text-cyan-400", 
+                bg: "bg-cyan-900/40 border-cyan-500/50",
+                icon: "cpu"
+              }
+            : { 
+                name: "SALES & PSYCHOLOGY DAY", 
+                sub: "Persuasion & Human Behavior",
+                color: "text-emerald-400", 
+                bg: "bg-emerald-900/40 border-emerald-500/50",
+                icon: "users"
+              };
+
         const INITIAL_SCHEDULE = [
-            { id: 'morning-1', start: "09:15", end: "11:15", type: "Level Up", title: "English & Sales (The Blocker)", icon: "zap", color: "bg-red-500", userTask: "Roleplay simulation & Deep learning. Pitching practice.", aiTask: "Act as difficult client (Voice mode). Contextual dictionary." },
+            // Morning Slot: Dynamic based on Tech vs Sales day
+            { 
+                id: 'morning-1', 
+                start: "09:15", 
+                end: "09:45", 
+                type: isTechDay ? "Research Reading" : "Sales Reading", 
+                title: isTechDay ? "Arxiv Paper Analysis" : "Sales Psychology (Deep Work)", 
+                gem: isTechDay ? "Gem: Arxiv Deconstructor" : "Gem: Arxiv Deconstructor (Adapted)",
+                icon: "book-open", 
+                color: isTechDay ? "bg-cyan-500" : "bg-emerald-500", 
+                userTask: isTechDay ? "Read 'Attention Is All You Need' or latest LLM paper. Translate structure mentally." : "Read 'Thinking Fast & Slow'. Highlight C1 behavioral terms.", 
+                aiTask: isTechDay ? "Analyze syntax. Extract academic collocations." : "Explain these terms in IELTS Speaking context." 
+            },
+            { 
+                id: 'morning-2', 
+                start: "09:45", 
+                end: "10:30", 
+                type: "Listening Input", 
+                title: isTechDay ? "Tech Lecture (Karpathy/Lex)" : "Sales Shadowing (Steve Jobs)", 
+                gem: isTechDay ? "Obsidian: Smart Notes" : "Gem: Pitch Trainer",
+                icon: "headphones", 
+                color: isTechDay ? "bg-cyan-600" : "bg-emerald-600", 
+                userTask: isTechDay ? "Active note-taking. Focus on technical argumentation flow." : "Shadowing & Dictation. Copy intonation exactly.", 
+                aiTask: isTechDay ? "Summarize key technical points into Bullet points." : "Check transcription accuracy." 
+            },
+            { 
+                id: 'morning-3', 
+                start: "10:30", 
+                end: "11:15", 
+                type: "Output Mastery", 
+                title: isTechDay ? "Tech Speaking / Writing" : "Persuasive Speaking", 
+                gem: isTechDay ? "Gem: The Tech Interviewer" : "Gem: The Feynman Salesman",
+                icon: "mic", 
+                color: isTechDay ? "bg-cyan-700" : "bg-emerald-700", 
+                userTask: isTechDay ? "Answer abstract questions about AI Future (Part 3 style)." : "Explain a tech concept to a non-tech CEO.", 
+                aiTask: isTechDay ? "Critique Lexical Resource (Tech) & Structure." : "Rate Analogy Score (1-10)." 
+            },
+            
             { id: 'break-1', isBreak: true, start: "11:15", end: "11:30", title: "Break - Screen Off", duration: "15m" },
-            { id: 'morning-2', start: "11:30", end: "13:00", type: "Main Job", title: "Deep Build (Product)", icon: "code", color: "bg-blue-600", userTask: "Code core features, complex logic, architecture decisions.", aiTask: "Background: Refactor old code, Write Unit Tests, Dummy Data." },
+            
+            { id: 'main-1', start: "11:30", end: "13:00", type: "Build", title: "Deep Work: Product Core", icon: "code", color: "bg-indigo-600", userTask: "Code core features, complex logic, architecture decisions.", aiTask: "Refactor code, Write Unit Tests, Dummy Data." },
+            
             { id: 'break-2', isBreak: true, start: "13:00", end: "14:00", title: "Lunch & Rest", duration: "60m" },
-            { id: 'afternoon-1', start: "14:00", end: "16:00", type: "Money", title: "Marketing & Community", icon: "users", color: "bg-green-600", userTask: "Create 'Big Idea', emotional stories, deep member interaction.", aiTask: "Clone content formats (Post -> Mail -> Video Script)." },
-            { id: 'afternoon-2', start: "16:00", end: "17:30", type: "Asset", title: "Course System", icon: "message-square", color: "bg-purple-600", userTask: "Brain dump: Voice recording about process/lessons.", aiTask: "Transcribe audio -> Structure into Syllabus." },
+            
+            { id: 'afternoon-1', start: "14:00", end: "16:00", type: "Money", title: "Marketing & Community", icon: "share-2", color: "bg-green-600", userTask: "Create 'Big Idea', emotional stories, interaction.", aiTask: "Clone content formats (Post -> Mail -> Video Script)." },
+            { id: 'afternoon-2', start: "16:00", end: "17:30", type: "Asset", title: "Course / Knowledge Graph", gem: "Obsidian Sync", icon: "database", color: "bg-purple-600", userTask: "Consolidate Research Notes -> Course Syllabus.", aiTask: "Transcribe audio -> Structure into Obsidian." },
+            
             { id: 'break-3', isBreak: true, start: "17:30", end: "21:00", title: "Family / Sport / Dinner", duration: "3.5h" },
-            { id: 'night-1', start: "21:00", end: "22:00", type: "Network", title: "Networking & Research", icon: "search", color: "bg-orange-500", userTask: "Strategy to approach VIPs. Personalized emails.", aiTask: "Research partner profiles (LinkedIn/FB). Draft ice-breakers." },
-            { id: 'night-2', start: "22:45", end: "23:00", type: "Plan", title: "Wrap up & Plan", icon: "check-circle-2", color: "bg-slate-500", userTask: "Review 3 wins. List 3 tasks for tomorrow.", aiTask: "No AI (Rest brain)." }
+            
+            { id: 'night-1', start: "21:00", end: "22:00", type: "Network", title: "Networking & Research", icon: "search", color: "bg-orange-500", userTask: "Strategy to approach VIPs. Personalized emails.", aiTask: "Research partner profiles (LinkedIn/FB)." },
+            { id: 'night-2', start: "22:45", end: "23:00", type: "Plan", title: "Wrap up & Plan", icon: "check-circle-2", color: "bg-slate-500", userTask: "Review 3 wins. List 3 tasks for tomorrow.", aiTask: "No AI." }
         ];
 
-        // --- STATE ---
-        let schedule = JSON.parse(localStorage.getItem('ai_schedule')) || JSON.parse(JSON.stringify(INITIAL_SCHEDULE));
-        let isNight = false;
-        let currentBg = "";
-
-        // --- DOM ELEMENTS ---
-        const bgContainer = document.getElementById('bg-container');
+        // --- STATE & DOM ---
+        let schedule = JSON.parse(localStorage.getItem('ai_schedule_v2')) || JSON.parse(JSON.stringify(INITIAL_SCHEDULE));
+        
         const bgImage = document.getElementById('bg-image');
-        const bgOverlay = document.getElementById('bg-overlay');
-        const bgGradient = document.getElementById('bg-gradient');
         const clockTime = document.getElementById('clock-time');
         const clockDate = document.getElementById('clock-date');
         const taskList = document.getElementById('task-list');
         const focusContainer = document.getElementById('focus-container');
         const progressBar = document.getElementById('progress-fill');
-        const progressText = document.getElementById('progress-text');
         const timelineNeedle = document.getElementById('timeline-needle');
         const timelinePct = document.getElementById('timeline-pct');
-        const headerSuffix = document.getElementById('header-suffix');
-        const headerSubtitle = document.getElementById('header-subtitle');
         const levelDisplay = document.getElementById('level-display');
         const xpDisplay = document.getElementById('xp-display');
+        const modeBadge = document.getElementById('mode-badge');
 
         // --- LOGIC ---
-
         function init() {
-            updateTime(); // Run once immediately
-            setInterval(updateTime, 1000 * 60); // Update every minute
+            // Apply Theme
+            document.body.className = isTechDay 
+                ? "overflow-x-hidden theme-transition min-h-screen text-slate-100 bg-slate-900 selection:bg-cyan-500/30"
+                : "overflow-x-hidden theme-transition min-h-screen text-slate-100 bg-slate-900 selection:bg-emerald-500/30";
+
+            bgImage.style.backgroundImage = `url('${isTechDay ? BG_IMAGES.tech : BG_IMAGES.sales}')`;
+            
+            // Set Mode Badge
+            modeBadge.innerHTML = `<i data-lucide="${MODE_CONFIG.icon}" class="w-4 h-4"></i> <div>${MODE_CONFIG.name}<div class="text-[9px] font-normal opacity-70">${MODE_CONFIG.sub}</div></div>`;
+            modeBadge.className = `px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider backdrop-blur-md border shadow-lg flex items-center gap-3 transition-all duration-500 ${MODE_CONFIG.color} ${MODE_CONFIG.bg}`;
+
+            updateTime();
+            setInterval(updateTime, 1000 * 60);
             renderSchedule();
             initStarField();
             lucide.createIcons();
-            
-            // Set initial background
-            const hour = new Date().getHours();
-            isNight = hour < 6 || hour >= 18;
-            setRandomBackground(isNight);
-        }
-
-        function setRandomBackground(nightMode) {
-            const images = nightMode ? BG_IMAGES.night : BG_IMAGES.day;
-            currentBg = images[Math.floor(Math.random() * images.length)];
-            bgImage.style.backgroundImage = `url('${currentBg}')`;
-            updateThemeStyles(nightMode);
-        }
-
-        function updateThemeStyles(nightMode) {
-            if (nightMode) {
-                document.body.classList.remove('text-slate-800', 'bg-slate-50');
-                document.body.classList.add('text-slate-100', 'bg-slate-900');
-                bgOverlay.className = "absolute inset-0 bg-slate-900/70";
-                bgGradient.className = "absolute inset-0 bg-gradient-to-b from-slate-900/50 via-transparent to-slate-900/80";
-                headerSuffix.className = "text-white";
-                headerSubtitle.className = "text-xs md:text-sm font-medium text-slate-400";
-            } else {
-                document.body.classList.remove('text-slate-100', 'bg-slate-900');
-                document.body.classList.add('text-slate-800', 'bg-slate-50');
-                bgOverlay.className = "absolute inset-0 bg-white/40";
-                bgGradient.className = "absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60";
-                headerSuffix.className = "text-slate-700";
-                headerSubtitle.className = "text-xs md:text-sm font-medium text-slate-600";
-            }
-            // Trigger star field visibility
-            document.getElementById('star-canvas').style.display = nightMode ? 'block' : 'none';
         }
 
         function updateTime() {
             const now = new Date();
-            
-            // Clock
             clockTime.innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             clockDate.innerText = now.toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'short' });
-
-            // Theme Check
-            const hour = now.getHours();
-            const newIsNight = hour < 6 || hour >= 18;
-            if (newIsNight !== isNight) {
-                isNight = newIsNight;
-                setRandomBackground(isNight);
-            }
-
-            // Timeline Position
             updateTimeline(now);
-            
-            // Re-render to update "Live" status if needed
-            // Ideally optimize this to not re-render DOM fully every minute, but simple for now
-            // renderSchedule(); 
-        }
-
-        function timeToMins(str) {
-            const [h, m] = str.split(':').map(Number);
-            return h * 60 + m;
         }
 
         function updateTimeline(now) {
@@ -277,13 +268,11 @@
             const totalMinutes = (END_HOUR - START_HOUR) * 60;
             const currentMinutes = now.getHours() * 60 + now.getMinutes();
             const startMinutes = START_HOUR * 60;
-            
             let percentage = ((currentMinutes - startMinutes) / totalMinutes) * 100;
-            if (percentage < 0) percentage = 0;
-            if (percentage > 100) percentage = 100;
+            percentage = Math.max(0, Math.min(100, percentage));
 
             timelineNeedle.style.left = `${percentage}%`;
-            timelinePct.innerText = `${Math.round(percentage)}% Passed`;
+            timelinePct.innerText = `${Math.round(percentage)}%`;
         }
 
         function toggleTask(id) {
@@ -291,339 +280,190 @@
                 if (item.id === id) return { ...item, completed: !item.completed };
                 return item;
             });
-            localStorage.setItem('ai_schedule', JSON.stringify(schedule));
+            localStorage.setItem('ai_schedule_v2', JSON.stringify(schedule));
             renderSchedule();
-            checkVictory();
+            if(schedule.filter(i => !i.isBreak && i.completed).length === schedule.filter(i => !i.isBreak).length) {
+                triggerConfetti();
+            }
         }
 
         function resetDay() {
             if(confirm("Start a new day?")) {
                 schedule = JSON.parse(JSON.stringify(INITIAL_SCHEDULE));
-                localStorage.setItem('ai_schedule', JSON.stringify(schedule));
+                localStorage.setItem('ai_schedule_v2', JSON.stringify(schedule));
                 renderSchedule();
-                document.getElementById('victory-message').classList.add('hidden');
             }
         }
-
-        function checkVictory() {
-            const tasks = schedule.filter(i => !i.isBreak);
-            const completed = tasks.filter(i => i.completed).length;
-            if (completed === tasks.length && completed > 0) {
-                document.getElementById('victory-message').classList.remove('hidden');
-                triggerConfetti();
-            }
-        }
-
-        // --- RENDERING ---
 
         function renderSchedule() {
             const tasksOnly = schedule.filter(i => !i.isBreak);
-            const total = tasksOnly.length;
             const completed = tasksOnly.filter(i => i.completed).length;
-            const progress = (completed / total) * 100;
+            const progress = (completed / tasksOnly.length) * 100;
 
-            // Stats
             progressBar.style.width = `${progress}%`;
-            if(progress > 5) {
-                progressText.innerText = `${Math.round(progress)}%`;
-                progressText.classList.remove('hidden');
-            } else {
-                progressText.classList.add('hidden');
-            }
             levelDisplay.innerText = progress < 30 ? "1" : progress < 70 ? "2" : "3";
             xpDisplay.innerText = Math.round(progress * 10);
 
-            // Find Next Focus
-            const nextTaskIdx = schedule.findIndex(i => !i.isBreak && !i.completed);
-            const focusTask = nextTaskIdx !== -1 ? schedule[nextTaskIdx] : null;
-
-            // Render Focus Card
-            renderFocusCard(focusTask);
-
-            // Render Timeline Markers (Static, render once ideally, but simple here)
-            renderTimelineTrack();
-
-            // Render List
-            let html = '';
-            
-            // Sections helpers
-            const addSectionHeader = (title, icon, colorClass) => {
-                html += `
-                <div class="mb-4 pl-20 md:pl-24 pb-2 text-xs font-bold uppercase tracking-widest flex items-center gap-2 border-b ${isNight ? 'border-slate-700 '+colorClass : 'border-slate-200 '+colorClass}">
-                    <i data-lucide="${icon}" class="w-3.5 h-3.5"></i> ${title}
-                </div>`;
-            };
-
-            const renderCard = (item) => {
-                if (item.isBreak) {
-                    return `
-                    <div class="relative flex mb-6 opacity-70 hover:opacity-100 transition-opacity group">
-                        <div class="w-20 md:w-24 flex-shrink-0 text-right pr-4 pt-1">
-                            <span class="text-sm font-mono ${isNight ? 'text-slate-300' : 'text-slate-600'}">${item.start}</span>
-                        </div>
-                        <div class="absolute left-20 md:left-24 top-0 bottom-0 w-px -ml-px border-dashed ${isNight ? 'bg-slate-700' : 'bg-slate-300'}"></div>
-                        <div class="absolute left-20 md:left-24 top-2 w-2 h-2 rounded-full -ml-1 z-10 ${isNight ? 'bg-slate-500' : 'bg-slate-400'}"></div>
-                        <div class="flex-1 ml-4 flex items-center gap-3 px-3 py-2 rounded-lg border border-dashed select-none backdrop-blur-md ${isNight ? 'bg-slate-900/40 border-slate-700 text-slate-300' : 'bg-white/40 border-slate-300 text-slate-600'}">
-                            <i data-lucide="coffee" class="w-4 h-4"></i>
-                            <span class="text-sm font-medium">${item.title}</span>
-                            <span class="text-xs px-2 py-0.5 rounded-full ml-auto ${isNight ? 'bg-slate-800/50' : 'bg-slate-200/50'}">${item.duration}</span>
-                        </div>
-                    </div>`;
-                }
-
-                const isNext = focusTask && item.id === focusTask.id;
-                const glassClass = isNight ? 
-                    (item.completed ? 'bg-slate-900/30 border-slate-800' : 'glass-night border-slate-700 hover:bg-slate-800/70') : 
-                    (item.completed ? 'bg-slate-50/50 border-slate-200' : 'glass-day border-slate-200 hover:bg-white/90');
-                
-                const activeClass = isNext && !item.completed ? 
-                    (isNight ? 'border-indigo-500 ring-2 ring-indigo-500/30 shadow-lg translate-x-1' : 'border-indigo-300 ring-2 ring-indigo-100 shadow-lg translate-x-1') : '';
-
-                return `
-                <div id="${item.id}" class="relative flex mb-8 transition-all duration-500 ${item.completed ? 'opacity-60 grayscale-[0.5]' : ''} ${isNext ? 'scale-[1.01]' : ''}">
-                    <!-- Time -->
-                    <div class="w-20 md:w-24 flex-shrink-0 flex flex-col items-end pr-4 text-right">
-                        <span class="font-bold font-mono ${item.completed ? 'text-slate-400 line-through' : (isNight ? 'text-white' : 'text-slate-800')}">${item.start}</span>
-                        <span class="text-[10px] opacity-60 ${isNight ? 'text-slate-400' : 'text-slate-500'}">to ${item.end}</span>
-                        <span class="text-[9px] uppercase tracking-wider mt-1 ${isNight ? 'text-indigo-300' : 'text-slate-500'}">${item.type}</span>
-                    </div>
-
-                    <!-- Line -->
-                    <div class="absolute left-20 md:left-24 top-0 bottom-0 w-px -ml-px ${isNight ? 'bg-indigo-900/50' : 'bg-slate-200'}"></div>
-                    <div class="absolute left-20 md:left-24 top-2 w-4 h-4 rounded-full border-4 ${isNight ? 'border-slate-900' : 'border-white'} ${item.completed ? 'bg-slate-400' : item.color} -ml-2 z-10"></div>
-
-                    <!-- Card -->
-                    <div onclick="toggleTask('${item.id}')" class="flex-1 rounded-xl shadow-sm border overflow-hidden cursor-pointer transition-all duration-300 transform backdrop-blur-md ${glassClass} ${activeClass}">
-                        <!-- Header -->
-                        <div class="px-4 py-3 border-b flex items-center justify-between ${isNight ? 'border-slate-700/50' : 'border-slate-100/50'}">
-                            <div class="flex items-center gap-3">
-                                <div class="p-2 rounded-lg text-white shadow-sm ${item.completed ? 'bg-slate-400' : item.color}">
-                                    <i data-lucide="${item.completed ? 'check-circle-2' : item.icon}" class="w-4 h-4"></i>
-                                </div>
-                                <h3 class="font-bold text-base ${item.completed ? 'text-slate-500 line-through' : (isNight ? 'text-slate-100' : 'text-slate-800')}">${item.title}</h3>
-                            </div>
-                            ${isNext && !item.completed ? `
-                            <span class="hidden sm:flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full animate-pulse ${isNight ? 'bg-indigo-900/50 text-indigo-300' : 'bg-indigo-50 text-indigo-600'}">
-                                <i data-lucide="play" class="w-3 h-3 fill-current"></i> Live
-                            </span>` : ''}
-                        </div>
-                        
-                        <!-- Grid -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x ${isNight ? 'divide-slate-700' : 'divide-slate-100'}">
-                            <div class="p-4">
-                                <div class="flex items-center gap-2 mb-2 text-[10px] font-bold uppercase tracking-wider ${isNight ? 'text-slate-400' : 'text-slate-500'}">
-                                    <i data-lucide="brain" class="w-3 h-3"></i> Pilot Task
-                                </div>
-                                <p class="text-sm font-medium leading-relaxed ${item.completed ? 'text-slate-500' : (isNight ? 'text-slate-200' : 'text-slate-700')}">${item.userTask}</p>
-                            </div>
-                            <div class="p-4 ${item.completed ? (isNight ? 'bg-slate-900/20' : 'bg-slate-50/50') : (isNight ? 'bg-indigo-900/10' : 'bg-indigo-50/50')}">
-                                <div class="flex items-center gap-2 mb-2 text-indigo-500 text-[10px] font-bold uppercase tracking-wider">
-                                    <i data-lucide="bot" class="w-3 h-3"></i> AI Co-pilot
-                                </div>
-                                <p class="text-sm italic leading-relaxed ${item.completed ? 'text-slate-500' : (isNight ? 'text-slate-300' : 'text-slate-600')}">"${item.aiTask}"</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `;
-            };
-
-            // Morning
-            addSectionHeader("Morning Operations", "sun", "text-amber-500");
-            schedule.filter(i => i.id.includes('morning') || i.id === 'break-1').forEach(item => html += renderCard(item));
-
-            // Afternoon
-            addSectionHeader("Afternoon Operations", "layers", "text-blue-500");
-            schedule.filter(i => i.id.includes('afternoon') || i.id.includes('break-2') || i.id === 'break-3').forEach(item => html += renderCard(item));
-
-            // Night
-            addSectionHeader("Night Operations", "moon", "text-purple-500");
-            schedule.filter(i => i.id.includes('night')).forEach(item => html += renderCard(item));
-
-            taskList.innerHTML = html;
-            lucide.createIcons(); // Re-init icons for new content
-        }
-
-        function renderFocusCard(task) {
-            if(!task) {
-                focusContainer.innerHTML = '';
-                return;
-            }
-            const styles = isNight ? 
-                { bg: 'rgba(49, 46, 129, 0.6)', border: 'rgba(99, 102, 241, 0.3)', text: 'text-white' } :
-                { bg: 'rgba(255, 255, 255, 0.8)', border: 'rgba(99, 102, 241, 0.2)', text: 'text-slate-800' };
-
-            focusContainer.innerHTML = `
-             <div class="mb-10 rounded-xl p-4 shadow-2xl flex items-center justify-between border relative overflow-hidden group cursor-pointer backdrop-blur-md transition-transform hover:scale-[1.01]"
-                 style="background: ${styles.bg}; border-color: ${styles.border}"
-                 onclick="document.getElementById('${task.id}')?.scrollIntoView({ behavior: 'smooth', block: 'center' })"
-              >
-                <div class="absolute top-0 right-0 p-8 opacity-10 transform translate-x-4 -translate-y-4">
-                  <i data-lucide="${isNight ? 'moon' : 'sun'}" class="w-24 h-24"></i>
-                </div>
-                <div class="relative z-10">
-                  <div class="flex items-center gap-2 text-indigo-500 text-xs font-bold uppercase tracking-wider mb-1">
-                    <i data-lucide="target" class="w-3.5 h-3.5"></i> Recommended Focus
-                  </div>
-                  <h2 class="text-lg md:text-xl font-bold flex items-center gap-2 ${styles.text}">
-                     ${task.title} <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                  </h2>
-                </div>
-                <div class="relative z-10 p-2 rounded-lg backdrop-blur-sm border ${isNight ? 'bg-slate-900/50 border-slate-700 text-white' : 'bg-white/50 border-slate-200 text-slate-800'}">
-                  <span class="text-2xl font-mono font-bold">${task.start}</span>
-                </div>
-              </div>
-            `;
-        }
-
-        function renderTimelineTrack() {
+            // Timeline Markers
             const track = document.getElementById('timeline-track-container');
-            // Remove old markers (keep track and needle)
-            Array.from(track.children).forEach(c => {
-                if(!c.id && !c.classList.contains('bg-slate-400/20')) c.remove();
-            });
-
-            // Re-add markers
-            const markers = [9, 12, 15, 18, 21];
-            const START_HOUR = 9;
-            const END_HOUR = 23;
-            const totalMinutes = (END_HOUR - START_HOUR) * 60;
-            const startMinutes = START_HOUR * 60;
-
-            markers.forEach(h => {
-                 const p = ((h * 60 - startMinutes) / totalMinutes) * 100;
-                 const div = document.createElement('div');
-                 div.className = "absolute top-0 flex flex-col items-center pointer-events-none";
-                 div.style.left = `${p}%`;
-                 div.style.transform = "translateX(-50%)";
-                 div.innerHTML = `
-                    <div class="h-2 w-0.5 mb-1 ${isNight ? 'bg-slate-500' : 'bg-slate-400'}"></div>
-                    <div class="text-[9px] font-mono ${isNight ? 'text-slate-500' : 'text-slate-400'}">${h}h</div>
-                 `;
-                 track.appendChild(div);
-            });
-
-            // Add Task Blocks
+            Array.from(track.children).forEach(c => { if(c.id !== 'timeline-needle' && !c.classList.contains('bg-slate-600/30')) c.remove(); });
+            
+            // Add blocks to timeline
             schedule.forEach(task => {
                 const [sh, sm] = task.start.split(':').map(Number);
                 const [eh, em] = task.end.split(':').map(Number);
-                const sMins = sh * 60 + sm - startMinutes;
+                const sMins = sh * 60 + sm - 9 * 60;
                 const duration = (eh * 60 + em) - (sh * 60 + sm);
-                const leftP = (sMins / totalMinutes) * 100;
-                const widthP = (duration / totalMinutes) * 100;
+                const leftP = (sMins / (14 * 60)) * 100;
+                const widthP = (duration / (14 * 60)) * 100;
 
                 if (widthP > 0 && leftP <= 100) {
                     const block = document.createElement('div');
-                    block.className = `absolute top-2.5 h-1 rounded-full opacity-50 ${task.isBreak ? 'bg-transparent' : 'bg-slate-400'}`;
-                    // Simple color mapping
-                    if(task.color?.includes('red')) block.classList.replace('bg-slate-400', 'bg-red-400');
-                    if(task.color?.includes('blue')) block.classList.replace('bg-slate-400', 'bg-blue-400');
-                    if(task.color?.includes('green')) block.classList.replace('bg-slate-400', 'bg-green-400');
-                    if(task.color?.includes('purple')) block.classList.replace('bg-slate-400', 'bg-purple-400');
-                    
+                    block.className = `absolute top-1 h-1.5 rounded-sm opacity-60 ${task.isBreak ? 'bg-slate-600' : (task.color.replace('bg-', 'bg-') || 'bg-slate-400')}`;
                     block.style.left = `${leftP}%`;
                     block.style.width = `${widthP}%`;
                     track.appendChild(block);
                 }
             });
+
+            // Focus Card
+            const nextTaskIdx = schedule.findIndex(i => !i.isBreak && !i.completed);
+            const focusTask = nextTaskIdx !== -1 ? schedule[nextTaskIdx] : null;
+            
+            if(focusTask) {
+                focusContainer.innerHTML = `
+                 <div class="mb-8 rounded-xl p-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 shadow-2xl hover:scale-[1.01] transition-transform cursor-pointer" 
+                      onclick="document.getElementById('${focusTask.id}')?.scrollIntoView({ behavior: 'smooth', block: 'center' })">
+                    <div class="bg-slate-900 rounded-[10px] p-5 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-12 opacity-10 bg-indigo-500 blur-3xl rounded-full translate-x-10 -translate-y-10"></div>
+                        <div class="flex items-start justify-between relative z-10">
+                            <div>
+                                <div class="flex items-center gap-2 text-indigo-400 text-xs font-bold uppercase tracking-wider mb-1">
+                                    <i data-lucide="crosshair" class="w-3.5 h-3.5 animate-pulse"></i> Priority Focus
+                                </div>
+                                <h2 class="text-xl md:text-2xl font-bold text-white mb-1">${focusTask.title}</h2>
+                                <div class="flex items-center gap-2 text-sm text-slate-400 font-mono">
+                                    <span>${focusTask.start} - ${focusTask.end}</span>
+                                    ${focusTask.gem ? `<span class="px-2 py-0.5 rounded bg-purple-900/50 text-purple-300 text-xs border border-purple-500/30">${focusTask.gem}</span>` : ''}
+                                </div>
+                            </div>
+                            <div class="bg-indigo-500/20 p-3 rounded-lg text-indigo-300">
+                                <i data-lucide="${focusTask.icon}" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                 </div>`;
+            } else {
+                focusContainer.innerHTML = '';
+            }
+
+            // List
+            let html = '';
+            const renderSection = (title, items) => {
+                if(items.length === 0) return;
+                html += `<div class="mb-2 mt-6 pl-4 text-xs font-bold uppercase tracking-widest text-slate-500 flex items-center gap-2">
+                    <div class="h-px flex-1 bg-slate-800"></div> ${title} <div class="h-px flex-1 bg-slate-800"></div>
+                </div>`;
+                items.forEach(item => {
+                    if (item.isBreak) {
+                        html += `
+                        <div class="flex items-center gap-4 py-3 opacity-50 hover:opacity-100 transition-opacity px-4 rounded-lg border border-transparent hover:border-slate-700">
+                            <span class="font-mono text-xs text-slate-500 w-12 text-right">${item.start}</span>
+                            <div class="h-px w-4 bg-slate-700"></div>
+                            <i data-lucide="coffee" class="w-4 h-4 text-slate-500"></i>
+                            <span class="text-sm font-medium text-slate-400">${item.title}</span>
+                        </div>`;
+                        return;
+                    }
+                    
+                    const isFocus = focusTask && item.id === focusTask.id;
+                    html += `
+                    <div id="${item.id}" class="group relative flex gap-4 transition-all duration-300 ${item.completed ? 'opacity-50 grayscale' : ''}" onclick="toggleTask('${item.id}')">
+                         <div class="w-12 pt-4 text-right flex-shrink-0">
+                            <span class="font-mono text-sm font-bold ${item.completed ? 'text-slate-600 line-through' : (isFocus ? 'text-indigo-400' : 'text-slate-400')}">${item.start}</span>
+                         </div>
+                         
+                         <div class="relative flex-1">
+                             <div class="absolute left-[-21px] top-6 w-3 h-3 rounded-full border-2 border-slate-900 ${item.completed ? 'bg-slate-700' : item.color} z-10 shadow-[0_0_0_4px_rgba(15,23,42,1)]"></div>
+                             <div class="absolute left-[-16px] top-8 bottom-[-24px] w-px bg-slate-800 group-last:hidden"></div>
+
+                             <div class="rounded-xl border ${isFocus ? 'border-indigo-500/50 bg-indigo-900/10' : 'border-slate-700/50 bg-slate-800/30'} p-4 cursor-pointer hover:bg-slate-800/50 transition-colors backdrop-blur-sm">
+                                 <div class="flex justify-between items-start mb-3">
+                                     <div class="flex items-center gap-3">
+                                         <div class="p-2 rounded-lg ${item.color} bg-opacity-20 text-white shadow-sm">
+                                             <i data-lucide="${item.completed ? 'check' : item.icon}" class="w-4 h-4"></i>
+                                         </div>
+                                         <div>
+                                            <h3 class="font-bold text-slate-200 ${item.completed ? 'line-through decoration-slate-600' : ''}">${item.title}</h3>
+                                            <div class="text-[10px] uppercase font-bold tracking-wider opacity-60 ${isTechDay ? 'text-cyan-400' : 'text-emerald-400'}">${item.type}</div>
+                                         </div>
+                                     </div>
+                                     ${item.gem ? `
+                                     <div class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-900 border border-slate-700 text-[10px] font-mono text-purple-300 obsidian-btn" title="Click to open tool">
+                                        <i data-lucide="sparkles" class="w-3 h-3"></i> ${item.gem}
+                                     </div>` : ''}
+                                 </div>
+                                 
+                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                     <div class="pl-2 border-l-2 border-slate-700">
+                                         <div class="text-[10px] font-bold uppercase text-slate-500 mb-1">Target</div>
+                                         <p class="text-slate-300 leading-snug">${item.userTask}</p>
+                                     </div>
+                                     <div class="pl-2 border-l-2 border-indigo-500/30 bg-indigo-900/10 rounded-r py-1 pr-2">
+                                         <div class="text-[10px] font-bold uppercase text-indigo-400 mb-1 flex items-center gap-1"><i data-lucide="bot" class="w-3 h-3"></i> AI Support</div>
+                                         <p class="text-slate-400 italic leading-snug">"${item.aiTask}"</p>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                    </div>`;
+                });
+            };
+
+            renderSection("Morning Protocol", schedule.filter(i => i.id.includes('morning') || i.id === 'break-1'));
+            renderSection("Core Work", schedule.filter(i => i.id.includes('main') || i.id === 'break-2'));
+            renderSection("Growth & Assets", schedule.filter(i => i.id.includes('afternoon') || i.id === 'break-3'));
+            renderSection("Night Ops", schedule.filter(i => i.id.includes('night')));
+
+            taskList.innerHTML = html;
+            lucide.createIcons();
         }
 
-        // --- EFFECTS: StarField ---
+        // --- EFFECTS ---
         function initStarField() {
             const canvas = document.getElementById('star-canvas');
             const ctx = canvas.getContext('2d');
             let width, height, stars = [];
-
-            function resize() {
-                width = window.innerWidth;
-                height = window.innerHeight;
-                canvas.width = width;
-                canvas.height = height;
-                initStars();
-            }
-
-            function initStars() {
-                stars = [];
-                for(let i=0; i<150; i++) {
-                    stars.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height,
-                        radius: Math.random() * 1.5,
-                        alpha: Math.random(),
-                        speed: Math.random() * 0.05
-                    });
-                }
-            }
-
-            function animate() {
+            const resize = () => { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; initStars(); };
+            const initStars = () => { stars = Array(100).fill().map(() => ({ x: Math.random() * width, y: Math.random() * height, r: Math.random() * 1.5, a: Math.random(), s: Math.random() * 0.05 })); };
+            const animate = () => {
                 ctx.clearRect(0, 0, width, height);
-                if(isNight) {
-                    stars.forEach(star => {
-                        ctx.beginPath();
-                        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-                        ctx.fill();
-                        star.alpha += (Math.random() - 0.5) * 0.05;
-                        if(star.alpha < 0.1) star.alpha = 0.1;
-                        if(star.alpha > 1) star.alpha = 1;
-                        star.y -= star.speed;
-                        if(star.y < 0) star.y = height;
-                    });
-                }
+                stars.forEach(star => {
+                    ctx.beginPath(); ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${star.a})`; ctx.fill();
+                    star.a += (Math.random() - 0.5) * 0.05; star.a = Math.max(0.1, Math.min(1, star.a));
+                    star.y -= star.s; if(star.y < 0) star.y = height;
+                });
                 requestAnimationFrame(animate);
-            }
-
-            window.addEventListener('resize', resize);
-            resize();
-            animate();
+            };
+            window.addEventListener('resize', resize); resize(); animate();
         }
 
-        // --- EFFECTS: Confetti ---
         function triggerConfetti() {
             const canvas = document.getElementById('confetti-canvas');
             const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            const particles = [];
-            const colors = ['#EF4444', '#3B82F6', '#10B981', '#F59E0B', '#8B5CF6'];
-
-            for (let i = 0; i < 200; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height - canvas.height,
-                    vx: Math.random() * 4 - 2,
-                    vy: Math.random() * 4 + 2,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    size: Math.random() * 8 + 2
-                });
-            }
-
-            let animationId;
-            function animate() {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            const particles = Array(150).fill().map(() => ({ x: Math.random() * canvas.width, y: Math.random() * canvas.height - canvas.height, vx: Math.random() * 4 - 2, vy: Math.random() * 4 + 2, color: ['#22d3ee', '#34d399', '#a78bfa'][Math.floor(Math.random()*3)], size: Math.random() * 6 + 2 }));
+            const animate = () => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                let activeParticles = 0;
-                particles.forEach(p => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    if (p.y < canvas.height) {
-                        activeParticles++;
-                        ctx.fillStyle = p.color;
-                        ctx.fillRect(p.x, p.y, p.size, p.size);
-                    }
-                });
-                if (activeParticles > 0) {
-                    animationId = requestAnimationFrame(animate);
-                } else {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clean up
-                }
-            }
+                let active = 0;
+                particles.forEach(p => { p.x += p.vx; p.y += p.vy; if(p.y < canvas.height) { active++; ctx.fillStyle = p.color; ctx.fillRect(p.x, p.y, p.size, p.size); } });
+                if(active > 0) requestAnimationFrame(animate);
+            };
             animate();
         }
 
-        // Start App
         init();
-
     </script>
 </body>
 </html>
